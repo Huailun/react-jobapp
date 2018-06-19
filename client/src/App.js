@@ -41,9 +41,15 @@ function handleChange(value) {
 
 class App extends Component {
   state = {
-    response: ''
+    response: '',
+    inputValue: 1,
   };
-
+  onChange = (value) => {
+    this.setState({
+      inputValue: value,
+    });
+  }
+  
   componentDidMount() {
     this.callApi()
       .then(res => this.setState({ response: res.express }))
@@ -108,12 +114,31 @@ class App extends Component {
               </Select>
               </div>
               <div style={{ textAlign: 'left', marginLeft: 30}} >
-              <h4>Job type</h4>
-              <Select defaultValue="jobSelection" style={{ width: 300 }} onChange={handleChange}>
-              <Option value="jobSelection">Select a job type</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="Yiminghe">yiminghe</Option>
-              </Select>
+                <h4>Pay rate / hr ($)</h4>
+                <Row>
+                <Col span={4}>
+                <InputNumber
+                  min={1}
+                  max={40}
+                  style={{ marginLeft: 16 }}
+                  value={this.state.inputValue}
+                  onChange={this.onChange}
+                  />
+                </Col>
+                <Col span={1} offset={5}>-</Col>
+                <Col span={4} offset={6}>
+                <InputNumber
+                  min={1}
+                  max={40}
+                  style={{ marginLeft: 16 }}
+                  value={this.state.inputValue}
+                  onChange={this.onChange}
+                  />
+                </Col>
+                <Col span={24}>
+                <Slider min={1} max={40} marks={marks} defaultValue={[18, 32]} onChange={this.onChange} value={this.state.inputValue} />
+                </Col>
+                </Row>
               </div>
               
               <div style={{ textAlign: 'left', marginLeft: 30}} >
@@ -131,7 +156,7 @@ class App extends Component {
             </Col>
             <Col className="gutter-row" span={6}>
               <div className="gutter-box">
-                <div></div>
+                
               </div>
            </Col>
           </Row>

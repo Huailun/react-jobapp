@@ -1,12 +1,13 @@
 const express = require('express');
 //const bodyParser = require('body-parser');
 const mysql      = require('mysql');
+const config = require('config');
 // https://github.com/mysqljs/mysql
 const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'me',
-  password : ' ',
-  database : 'jobs'
+  host     : config.host,
+  user     : config.user,
+  password : config.password,
+  database : config.database
 });
 
 // Initialize the app
@@ -27,16 +28,3 @@ app.get('/posts', function (req, res) {
 app.listen(3000, () => {
  console.log('Go to http://localhost:3000/posts to see posts');
 });
-
-
-/***
- * var connection=mysql.createPool({
- 
-host:'localhost',
- user:'root',
- password:'',
- database:'demo'
- 
-});
- module.exports=connection;
-***/
