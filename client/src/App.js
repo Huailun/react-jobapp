@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 import { Row, Col } from 'antd';
 import { Checkbox } from 'antd';
 import { Select, Slider, InputNumber, Pagination, Divider } from 'antd';
-import { List } from 'antd';
+import { List, Tag } from 'antd';
 
 import logo from './logo.svg';
 
@@ -13,6 +13,7 @@ import './App.css';
 const { Header, Footer, Content } = Layout;
 const Search = Input.Search;
 const Option = Select.Option;
+const { TextArea } = Input;
 const marks = {
   1: '1',
   40: '40+'
@@ -38,6 +39,7 @@ function onChange(checkedValues) {
 function handleChange(value) {
   console.log(`selected ${value}`);
 }
+
 
 class App extends Component {
   state = {
@@ -86,9 +88,17 @@ class App extends Component {
         </Header>
         </Layout>
         <div className="gutter-example">
-          <Row gutter={16}>
+          <Row gutter={16}>          
             <Col className="gutter-row" span={6}>
             <div className="gutter-box">
+            <div style={{ textAlign: 'left', marginLeft: 30 }}>
+              <h4>FILTERS</h4>
+              <Divider />      
+            </div>
+            <div style={{ textAlign: 'left', marginLeft: 30 }}>
+              <h3>Skills</h3>
+              <TextArea rows={2} />              
+            </div>
               <div>
               <Checkbox.Group style={{ width: '100%', textAlign: 'left', marginLeft: '30px' }} onChange={onChange}>
               <Row>
@@ -175,9 +185,9 @@ class App extends Component {
             <Col className="gutter-row" span={6}>
               <div className="gutter-box">
                 <div>
-                  <h3>TOP JOBS</h3>
+                  <h4>TOP JOBS</h4>
                   <Divider />
-                  <h3>MOST VIEWED THIS WEEK</h3>
+                  <h4>MOST VIEWED THIS WEEK</h4>
                   <Divider />  
                 </div>
               </div>
