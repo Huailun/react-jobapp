@@ -3,14 +3,14 @@ import { Input } from 'antd';
 import { Layout } from 'antd';
 import { Row, Col } from 'antd';
 import { Checkbox } from 'antd';
-import { Select, Slider, InputNumber } from 'antd';
+import { Select, Slider, InputNumber, Pagination, Divider } from 'antd';
 import { List } from 'antd';
 
 import logo from './logo.svg';
 
 import './App.css';
 
-const { Header } = Layout;
+const { Header, Footer, Content } = Layout;
 const Search = Input.Search;
 const Option = Select.Option;
 const marks = {
@@ -19,7 +19,7 @@ const marks = {
 };
 const data = [
   {
-    title: 'Sevior Ruby on Rails enginner',
+    title: 'Senior Ruby on Rails enginner',
     description: 'Lorem ipsum dolor sit amet,',
     rate: '$60/hr'
   },
@@ -68,7 +68,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{ backgroundColor: '#f0f2f5'}}>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
@@ -120,17 +120,15 @@ class App extends Component {
                 <InputNumber
                   min={1}
                   max={40}
-                  style={{ marginLeft: 16 }}
+                  style={{ marginLeft: 5 }}
                   value={this.state.inputValue}
                   onChange={this.onChange}
                   />
                 </Col>
-                <Col span={1} offset={5}>-</Col>
                 <Col span={4} offset={6}>
                 <InputNumber
                   min={1}
                   max={40}
-                  style={{ marginLeft: 16 }}
                   value={this.state.inputValue}
                   onChange={this.onChange}
                   />
@@ -152,11 +150,36 @@ class App extends Component {
             </div>
             </Col>
             <Col className="gutter-row" span={12}>
-              <div className="gutter-box">col-12</div>
+              <div className="gutter-box">
+              <Layout>
+              <Content style={{ background: 'white',  textAlign: 'left' }}>
+              <List
+                itemLayout="horizontal"
+                dataSource={data}
+                renderItem={item => (
+                  <List.Item style={{ marginLeft: 20 }}>
+                  <List.Item.Meta
+                   title={<a href="https://ant.design">{item.title}</a>}
+                   description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                  />
+                </List.Item>
+                  )}
+                />
+              </Content>
+              <Footer>
+              <Pagination size="small" defaultCurrent={1} total={240} />
+              </Footer>
+              </Layout>
+              </div>
             </Col>
             <Col className="gutter-row" span={6}>
               <div className="gutter-box">
-                
+                <div>
+                  <h3>TOP JOBS</h3>
+                  <Divider />
+                  <h3>MOST VIEWED THIS WEEK</h3>
+                  <Divider />  
+                </div>
               </div>
            </Col>
           </Row>
